@@ -159,8 +159,10 @@ body {
 			row-gap: 5rem;
 			column-gap: 3rem;
 
-			.photoContainer {
+			.photoContainer,
+			.videoContainer {
 				position: relative;
+				cursor: pointer;
 
 				.gallery-info {
 					width: 100%;
@@ -243,7 +245,8 @@ body {
 					}
 				}
 
-				img {
+				img,
+				video {
 					position: relative;
 
 					width: 100%;

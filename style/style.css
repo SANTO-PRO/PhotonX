@@ -122,10 +122,13 @@ body main .gallery {
   -moz-column-gap: 3rem;
        column-gap: 3rem;
 }
-body main .gallery .photoContainer {
+body main .gallery .photoContainer,
+body main .gallery .videoContainer {
   position: relative;
+  cursor: pointer;
 }
-body main .gallery .photoContainer .gallery-info {
+body main .gallery .photoContainer .gallery-info,
+body main .gallery .videoContainer .gallery-info {
   width: 100%;
   margin-bottom: 0.2rem;
   position: absolute;
@@ -142,7 +145,8 @@ body main .gallery .photoContainer .gallery-info {
   color: rgba(14, 14, 14, 0.6431372549);
   text-transform: uppercase;
 }
-body main .gallery .photoContainer .gallery-info p {
+body main .gallery .photoContainer .gallery-info p,
+body main .gallery .videoContainer .gallery-info p {
   padding: 0.5rem;
   margin-left: 0.5rem;
   background: rgba(238, 246, 255, 0.6156862745);
@@ -150,11 +154,13 @@ body main .gallery .photoContainer .gallery-info p {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.5s ease-in-out;
 }
-body main .gallery .photoContainer .gallery-info p:hover {
+body main .gallery .photoContainer .gallery-info p:hover,
+body main .gallery .videoContainer .gallery-info p:hover {
   background: #0e0e0e;
   color: #eef6ff;
 }
-body main .gallery .photoContainer .gallery-info a {
+body main .gallery .photoContainer .gallery-info a,
+body main .gallery .videoContainer .gallery-info a {
   background: rgba(238, 246, 255, 0.6156862745);
   padding: 0.5rem;
   margin-right: 0.5rem;
@@ -165,24 +171,31 @@ body main .gallery .photoContainer .gallery-info a {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.5s ease;
 }
-body main .gallery .photoContainer .gallery-info a i {
+body main .gallery .photoContainer .gallery-info a i,
+body main .gallery .videoContainer .gallery-info a i {
   pointer-events: none;
   color: #0e0e0e;
 }
-body main .gallery .photoContainer .gallery-info a:hover {
+body main .gallery .photoContainer .gallery-info a:hover,
+body main .gallery .videoContainer .gallery-info a:hover {
   background: #0e0e0e;
 }
-body main .gallery .photoContainer .gallery-info a:hover i {
+body main .gallery .photoContainer .gallery-info a:hover i,
+body main .gallery .videoContainer .gallery-info a:hover i {
   color: #eef6ff;
 }
 @media screen and (max-width: 660px) {
-  body main .gallery .photoContainer .gallery-info p {
+  body main .gallery .photoContainer .gallery-info p,
+body main .gallery .videoContainer .gallery-info p {
     font-size: 0.5rem;
     padding: 0.3rem;
     margin-left: 0.5rem;
   }
 }
-body main .gallery .photoContainer img {
+body main .gallery .photoContainer img,
+body main .gallery .photoContainer video,
+body main .gallery .videoContainer img,
+body main .gallery .videoContainer video {
   position: relative;
   width: 100%;
   height: 100%;
