@@ -231,6 +231,16 @@ body {
 							}
 						}
 					}
+
+					@media screen and (max-width: 660px) {
+						//=> Artist Name for sm-devices:
+						p {
+							font-size: 0.5rem;
+
+							padding: 0.3rem;
+							margin-left: 0.5rem;
+						}
+					}
 				}
 
 				img {
@@ -242,6 +252,14 @@ body {
 					object-fit: cover;
 					border-radius: 1rem;
 				}
+			}
+
+			@media screen and (max-width: 660px) {
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				padding: 1rem 0;
+
+				row-gap: 2rem;
+				column-gap: 1rem;
 			}
 		}
 	}
@@ -255,7 +273,7 @@ body {
 		align-items: center;
 		justify-content: center;
 
-		.more-Btn {
+		.moreBtn {
 			background: #0e0e0e;
 			color: #ddedff;
 			padding: 0.5rem 2rem;
