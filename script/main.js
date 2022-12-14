@@ -1,38 +1,37 @@
-//==> Selectors:
-
-//=> Divs:
-const videosGallery = document.querySelector('.videos-gallery');
-const searchInput = document.querySelector('.videosSearchInput');
-const form = document.querySelector('.videosSearchForm');
-
-//=> Btns:
-const moreVideosBtn = document.querySelector('.moreVideos-Btn');
-
-//==> Variables:
-let searchValue;
-let currentSearch;
-let page = 1;
-
 //==> API Elements:
 //=> API KEY:
 const auth_key = '563492ad6f917000010000013457deb42ca2403a9074ac93b29156e6';
 
+//==> Selectors:
+//=> Divs:
+const photosGallery = document.querySelector('.gallery');
+const searchInput = document.querySelector('.search-input');
+const form = document.querySelector('.search-form');
+
+//=> Buttons:
+const morePhotosBtn = document.querySelector('.morePhotos-Btn');
+
+//==> Variables:
+let searchValue;
+let currentSearch;
+let fetchPhotosUrl;
+let page = 1;
+
 //==> Listners:
 //=> Search Input:
 searchInput.addEventListener('input', updateInput);
-
-console.log(searchInput);
 
 //=> Form:
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	currentSearch = searchValue;
-	searchVideos(searchValue);
+	searchPhotos(searchValue);
 });
 
-//=> Load More Videos:
-moreVideosBtn.addEventListener('click', loadMoreVideos);
+//==> loadMore Btn:
+//=> Load More Photos:
+morePhotosBtn.addEventListener('click', loadMorePhotos);
 
 //==> Functions:
 //-->> Update Input:
@@ -42,7 +41,7 @@ function updateInput(e) {
 
 //-->> Clear:
 function clear() {
-	videosGallery.innerHTML = '';
+	photosGallery.innerHTML = '';
 	searchInput.value = '';
 }
 
@@ -62,104 +61,67 @@ async function fetchApi(url) {
 	return data;
 }
 
-//-->> Generate video Container:
-function generateVideos(data) {
-	data.videos.forEach((video) => {
-		video.video_files.forEach((video_file) => {
-			//=> Create Video Container:
-			const videoContainer = document.createElement('div');
-			videoContainer.classList.add('videoContainer');
+//-->> Generate img Container:
+function generatePhotos(data) {
+	data.photos.forEach((photo) => {
+		const photoContainer = document.createElement('div');
 
-			//=> Conditions:
-			if (
-				video_file.quality === 'hd' &&
-				video_file.width === 1280 &&
-				video_file.height === 720
-			) {
-				videoContainer.innerHTML = `
-				<div class="gallery-info">
-				<p>${video_file.quality}</p>
-				<a  href = ${video_file.link} target = '_blank'> <i class="fas fa-download"></i> </a>
-				</div>
-				<video muted src = ${video_file.link}></video>
-				`;
-			} else if (
-				(video_file.quality === 'sd' || video_file.width === 1920, 960, 640)
-			) {
-				videoContainer.style.display = 'none';
-			}
-
-			//=> Append to Videos Gallery:
-			videosGallery.appendChild(videoContainer);
-		});
-	});
-
-	//==> Preview and Play Videos:
-	const videos = videosGallery.querySelectorAll('video');
-
-	videos.forEach((video) => {
-		video.addEventListener('mouseover', function () {
-			this.play();
-		});
-
-		video.addEventListener('mouseout', function () {
-			this.pause();
-		});
-
-		video.addEventListener('touchstart', function () {
-			this.play();
-		});
-
-		video.addEventListener('touchend', function () {
-			this.pause();
-		});
+		photoContainer.classList.add('photoContainer');
+		photoContainer.innerHTML = `
+		
+		<div class="gallery-info">
+		<p>${photo.photographer}</p>
+		<a  href = ${photo.src.original} target = '_blank'> <i class="fas fa-download"></i> </a>
+		</div>
+		<img src = ${photo.src.large}></img>
+		`;
+		photosGallery.appendChild(photoContainer);
 	});
 }
 
-//==> Get Popular Videos:
-async function popularVideos() {
-	//=> Popular Videos url:
-	fetchVideosUrl = `https://api.pexels.com/videos/popular?per_page=30&page=1`;
+//==> Get curated photos:
+async function curatedPhotos() {
+	//=> curated url:
+	fetchPhotosUrl = `https://api.pexels.com/v1/curated?per_page=16&page=1`;
 
 	//=> Api fetch:
-	const data = await fetchApi(fetchVideosUrl);
+	const data = await fetchApi(fetchPhotosUrl);
 
 	//=> Generate Photos:
-	generateVideos(data);
+	generatePhotos(data);
 }
 
-//==> Search Videos:
-async function searchVideos(query) {
+//==> Search Photos:
+async function searchPhotos(query) {
 	//=> Clear Everythings:
 	clear();
-
 	//=> Search url:
-	fetchVideosUrl = `https://api.pexels.com/videos/search?query=${query}+query&per_page=25&page=1`;
+	fetchPhotosUrl = `https://api.pexels.com/v1/search?query=${query}+query&per_page=16&page=1`;
 
 	//=> Api fetch:
-	const data = await fetchApi(fetchVideosUrl);
+	const data = await fetchApi(fetchPhotosUrl);
 
-	//=> Generate Videos:
-	generateVideos(data);
+	//=> Generate Photos:
+	generatePhotos(data);
 }
 
-//==> LoadMore Videos:
-async function loadMoreVideos() {
+//==> LoadMore Photos:
+async function loadMorePhotos() {
 	//=> Page Increments:
 	page++;
 
 	//=> Conditions:
 	if (currentSearch) {
-		fetchVideosUrl = `https://api.pexels.com/videos/search?query=${currentSearch}+query&per_page=25&page=${page}`;
+		fetchPhotosUrl = `https://api.pexels.com/v1/search?query=${currentSearch}+query&per_page=16&page=${page}`;
 	} else {
-		fetchVideosUrl = `https://api.pexels.com/videos/popular?per_page=30&page=${page}`;
+		fetchPhotosUrl = `https://api.pexels.com/v1/curated?per_page=16&page=${page}`;
 	}
 
 	//=> Api fetch:
-	const data = await fetchApi(fetchVideosUrl);
+	const data = await fetchApi(fetchPhotosUrl);
 
-	//=> Generate Videos:
-	generateVideos(data);
+	//=> Generate Photos:
+	generatePhotos(data);
 }
 
-popularVideos();
+curatedPhotos();
