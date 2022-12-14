@@ -1,3 +1,7 @@
+//==> API Elements:
+//=> API KEY:
+const auth_key = '563492ad6f917000010000013457deb42ca2403a9074ac93b29156e6';
+
 //==> Selectors:
 //=> Divs:
 const videosGallery = document.querySelector('.videos-gallery');
@@ -6,15 +10,13 @@ const form = document.querySelector('.videosSearchForm');
 
 //=> Btns:
 const moreVideosBtn = document.querySelector('.moreVideos-Btn');
+const randomVideosBtn = document.querySelector('.randomVideos');
 
 //==> Variables:
 let searchValue;
 let currentSearch;
+let fetchVideosUrl;
 let page = 1;
-
-//==> API Elements:
-//=> API KEY:
-const auth_key = '563492ad6f917000010000013457deb42ca2403a9074ac93b29156e6';
 
 //==> Listners:
 //=> Search Input:
@@ -32,6 +34,9 @@ form.addEventListener('submit', (e) => {
 
 //=> Load More Videos:
 moreVideosBtn.addEventListener('click', loadMoreVideos);
+
+//=> Load Random Videos Btn:
+randomVideosBtn.addEventListener('click', randomVideosGenerate);
 
 //==> Functions:
 //-->> Update Input:
@@ -105,13 +110,13 @@ function generateVideos(data) {
 			this.pause();
 		});
 
-		video.addEventListener('touchstart', function () {
-			this.play();
-		});
+		// video.addEventListener('touchstart', function () {
+		// 	this.play();
+		// });
 
-		video.addEventListener('touchend', function () {
-			this.pause();
-		});
+		// video.addEventListener('touchend', function () {
+		// 	this.pause();
+		// });
 	});
 }
 
@@ -160,5 +165,24 @@ async function loadMoreVideos() {
 	//=> Generate Videos:
 	generateVideos(data);
 }
+
+//==> Random Photos Generator:
+function randomVideosGenerate() {
+	clear();
+	loadMoreVideos();
+}
+
+//==> Add Active To Navbar Item:
+(function navbarActive() {
+	const currentLocation = location.href;
+	const navItems = document.querySelectorAll('.navbar div a');
+	const navLength = navItems.length;
+
+	for (var i = 0; i < navLength; i++) {
+		if (navItems[i].href === currentLocation) {
+			navItems[i].className = 'active';
+		}
+	}
+})();
 
 popularVideos();

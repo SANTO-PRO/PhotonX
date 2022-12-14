@@ -16,21 +16,25 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  background: radial-gradient(ellipse at bottom, #ffffff 25%, #f3efef 100%);
 }
 body header {
-  min-height: 40vh;
+  min-height: 45vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: rgb(238, 246, 255);
+  background: 50% 50%;
+  background-image: url("/img/photosBg.jpg");
   background-repeat: no-repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body header h2 {
   padding: 2rem;
 }
 body header h2 #logo {
-  color: #0e0e0e;
+  color: #003046;
   text-decoration: none;
   font-size: 3rem;
   font-weight: 400;
@@ -42,7 +46,7 @@ body header .search-form {
 }
 body header .search-form input {
   width: 30vw;
-  height: 2.5rem;
+  height: 2.8rem;
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -52,7 +56,7 @@ body header .search-form input {
   padding-left: 1rem;
   text-align: left;
   border-radius: 15px 0 0 15px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
 }
 @media screen and (max-width: 660px) {
   body header .search-form input {
@@ -83,7 +87,6 @@ body section .navbar {
   margin: 2.5rem 0 5rem 0rem;
 }
 body section .navbar .category {
-  background: #eef6ff;
   width: 3rem;
   height: 3rem;
   padding: 25px;
@@ -91,14 +94,20 @@ body section .navbar .category {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   transition: all 0.3s ease-out;
 }
 body section .navbar .category a {
   color: #0e0e0e;
 }
 body section .navbar .category a i {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+}
+body section .navbar .category a.active {
+  color: #eef6ff;
+}
+body section .navbar .category a.active i {
+  color: #3fa8ff;
 }
 body section .navbar .category:hover {
   background: #0e0e0e;
@@ -110,6 +119,43 @@ body section .navbar .category:hover a {
 @media screen and (max-width: 660px) {
   body section .navbar .category {
     margin: 0 3rem;
+  }
+}
+body main .title {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body main .title h2 {
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+}
+body main .title .random-generateBtn {
+  background: #ebebeb;
+  color: #0e0e0e;
+  padding: 0.5rem 1rem;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06));
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+body main .title .random-generateBtn:hover {
+  background: #0e0e0e;
+  color: #9bff3e;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 660px) {
+  body main .title h2 {
+    font-size: 1.2rem;
+  }
+  body main .title .random-generateBtn {
+    padding: 0.3rem 0.7rem;
   }
 }
 body main .gallery {
@@ -126,6 +172,7 @@ body main .gallery .photoContainer,
 body main .gallery .videoContainer {
   position: relative;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 body main .gallery .photoContainer .gallery-info,
 body main .gallery .videoContainer .gallery-info {
@@ -199,12 +246,30 @@ body main .gallery .videoContainer video {
   position: relative;
   width: 100%;
   height: 100%;
+  filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 1rem;
 }
+body main .gallery .photoContainer:hover,
+body main .gallery .videoContainer:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+}
 @media screen and (max-width: 660px) {
   body main .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 1rem 0;
+    row-gap: 2rem;
+    -moz-column-gap: 1rem;
+         column-gap: 1rem;
+  }
+}
+body main .videos-gallery {
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+}
+@media screen and (max-width: 660px) {
+  body main .videos-gallery {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     padding: 1rem 0;
     row-gap: 2rem;

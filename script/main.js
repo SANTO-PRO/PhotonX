@@ -10,11 +10,13 @@ const form = document.querySelector('.search-form');
 
 //=> Buttons:
 const morePhotosBtn = document.querySelector('.morePhotos-Btn');
+const randomPhotosBtn = document.querySelector('.randomPhotos');
 
 //==> Variables:
 let searchValue;
 let currentSearch;
 let fetchPhotosUrl;
+let fetchPopularPhotosUrl;
 let page = 1;
 
 //==> Listners:
@@ -29,9 +31,17 @@ form.addEventListener('submit', (e) => {
 	searchPhotos(searchValue);
 });
 
-//==> loadMore Btn:
-//=> Load More Photos:
-morePhotosBtn.addEventListener('click', loadMorePhotos);
+//=> Load More Photos Btn:
+morePhotosBtn.addEventListener('click', () => {
+	if (morePhotosBtn.classList.contains('homeMore')) {
+		loadMorePhotos();
+	} else if (morePhotosBtn.classList.contains('popularMore')) {
+		loadMorePopularPhotos();
+	}
+});
+
+//=> Load Random photos Btn:
+randomPhotosBtn.addEventListener('click', randomPhotosGenerate);
 
 //==> Functions:
 //-->> Update Input:
@@ -79,13 +89,23 @@ function generatePhotos(data) {
 	});
 }
 
-//==> Get curated photos:
 async function curatedPhotos() {
 	//=> curated url:
 	fetchPhotosUrl = `https://api.pexels.com/v1/curated?per_page=16&page=1`;
 
 	//=> Api fetch:
 	const data = await fetchApi(fetchPhotosUrl);
+
+	//=> Generate Photos:
+	generatePhotos(data);
+}
+//==> Get Popular photos:
+async function populerPhotos() {
+	//=> curated url:
+	fetchPopularPhotosUrl = `https://api.pexels.com/v1/popular?per_page=16&page=1`;
+
+	//=> Api fetch:
+	const data = await fetchApi(fetchPopularPhotosUrl);
 
 	//=> Generate Photos:
 	generatePhotos(data);
@@ -105,7 +125,7 @@ async function searchPhotos(query) {
 	generatePhotos(data);
 }
 
-//==> LoadMore Photos:
+//==> LoadMore  Photos:
 async function loadMorePhotos() {
 	//=> Page Increments:
 	page++;
@@ -124,4 +144,56 @@ async function loadMorePhotos() {
 	generatePhotos(data);
 }
 
-curatedPhotos();
+//==> LoadMore Popular Photos:
+async function loadMorePopularPhotos() {
+	//=> Page Increments:
+	page++;
+
+	//=> Conditions:
+	if (currentSearch) {
+		fetchPopularPhotosUrl = `https://api.pexels.com/v1/search?query=${currentSearch}+query&per_page=16&page=${page}`;
+	} else {
+		fetchPopularPhotosUrl = `https://api.pexels.com/v1/popular?per_page=16&page=${page}`;
+	}
+
+	//=> Api fetch:
+	const data = await fetchApi(fetchPopularPhotosUrl);
+
+	//=> Generate Photos:
+	generatePhotos(data);
+}
+
+//==> Random Photos Generator:
+function randomPhotosGenerate() {
+	clear();
+
+	if (window.location.pathname === '/index.html') {
+		loadMorePhotos();
+	} else {
+		loadMorePopularPhotos();
+	}
+}
+
+//==> Add Active To Navbar Item:
+(function navbarActive() {
+	const currentLocation = location.href;
+	const navItems = document.querySelectorAll('.navbar div a');
+	const navLength = navItems.length;
+
+	for (var i = 0; i < navLength; i++) {
+		if (navItems[i].href === currentLocation) {
+			navItems[i].className = 'active';
+		}
+	}
+})();
+
+//==> page url Checker:
+function urlChecker() {
+	if (window.location.pathname === '/index.html') {
+		curatedPhotos();
+	} else {
+		populerPhotos();
+	}
+}
+
+urlChecker();
