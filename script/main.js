@@ -101,6 +101,7 @@ function imageLightbox() {
 	galleryImages.forEach((image) => {
 		image.addEventListener('click', (e) => {
 			lightbox.classList.add('active');
+
 			const img = document.createElement('img');
 			img.src = image.src;
 			while (lightbox.firstChild) {
