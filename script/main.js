@@ -117,8 +117,8 @@ function imageLightbox() {
 		}
 	});
 }
-imageLightbox();
 
+//==> Get Curated photos:
 async function curatedPhotos() {
 	//=> curated url:
 	fetchPhotosUrl = `https://api.pexels.com/v1/curated?per_page=16&page=1`;
