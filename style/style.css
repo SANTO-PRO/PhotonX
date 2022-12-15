@@ -70,10 +70,17 @@ body header button {
   padding: auto;
   cursor: pointer;
   color: #2b2b2b;
+  background: #f7e2df;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+body header button:hover {
+  background: #003046;
+  color: #ebebeb;
+  box-shadow: #0073a8 0 0 10px;
 }
 body section {
   width: 100%;
@@ -87,6 +94,7 @@ body section .navbar {
   margin: 2.5rem 0 5rem 0rem;
 }
 body section .navbar .category {
+  background: #f7e2df;
   width: 3rem;
   height: 3rem;
   padding: 25px;
@@ -98,23 +106,26 @@ body section .navbar .category {
   transition: all 0.3s ease-out;
 }
 body section .navbar .category a {
-  color: #0e0e0e;
+  color: #003046;
 }
 body section .navbar .category a i {
   font-size: 1.4rem;
 }
 body section .navbar .category a.active {
   color: #eef6ff;
+  background: #003046;
+  padding: 13px;
+  border-radius: 1rem;
 }
 body section .navbar .category a.active i {
-  color: #3fa8ff;
+  color: #fbe0d3;
 }
 body section .navbar .category:hover {
-  background: #0e0e0e;
+  background: #003046;
   transition: all 0.3s ease-in;
 }
 body section .navbar .category:hover a {
-  color: #eef6ff;
+  color: #fbe0d3;
 }
 @media screen and (max-width: 660px) {
   body section .navbar .category {
@@ -133,7 +144,7 @@ body main .title h2 {
   font-family: "Roboto", sans-serif;
 }
 body main .title .random-generateBtn {
-  background: #ebebeb;
+  background: #f7e2df;
   color: #0e0e0e;
   padding: 0.5rem 1rem;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06));
@@ -284,8 +295,8 @@ body .nav-Btn {
   justify-content: center;
 }
 body .nav-Btn .moreBtn {
-  background: #0e0e0e;
-  color: #ddedff;
+  background: #003046;
+  color: #f7e2df;
   padding: 0.5rem 2rem;
   border: none;
   border-radius: 0.5rem;
@@ -309,7 +320,7 @@ footer {
   justify-content: flex-end;
 }
 footer .copy-rights {
-  background: #eef6ff;
+  background: #eaf4ff;
   border-radius: 1rem;
   font-family: "Roboto", sans-serif;
   font-size: 0.7rem;
@@ -354,7 +365,7 @@ footer .links a {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  background: #edf6ff;
+  background: #eaf4ff;
   padding: 0.5rem;
   border-radius: 50%;
   transition: all 0.3s ease;
@@ -367,7 +378,7 @@ footer .links a:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 footer .links a:hover i {
-  color: #ddedff;
+  color: #eaf4ff;
 }
 @media screen and (max-width: 660px) {
   footer {

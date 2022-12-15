@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- favivon start  -->
+		<!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> -->
+		<!-- favivon end  -->
+
+		<!-- Font Awesome icon start   -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+			integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Font Awesome icon end   -->
+
+		<!-- Style Sheet start  -->
+		<link rel="stylesheet" href="../style/style.css" />
+		<!-- Style Sheet end  -->
+
+		<title>PhotonX</title>
+	</head>
+	<body>
+		<header>
+			<h2>
+				<a id="logo" href="../index.html">Photon<span>X</span> </a>
+			</h2>
+
+			<form class="search-form">
+				<input
+					type="text"
+					name="search"
+					class="search-input"
+					placeholder="Find any photo you want.."
+				/>
+				<button class="search-Btn">Search</button>
+			</form>
+		</header>
+
+		<section>
+			<div class="navbar">
+				<div class="home category">
+					<a href="../index.html"><i class="fas fa-duotone fa-house"></i></a>
+				</div>
+				<div class="videos category">
+					<a href="./videos.html"><i class="fas fa-duotone fa-video"></i></a>
+				</div>
+				<div class="photos category">
+					<a href="./popular.html"><i class="fas fa-solid fa-star"></i></a>
+				</div>
+			</div>
+		</section>
+
+		<main>
+			<!-- Photos Head Title  -->
+			<div class="title">
+				<h2>Top Stock Photos</h2>
+				<button class="random-generateBtn randomPhotos">
+					<i class="fas fa-light fa-retweet"></i>
+				</button>
+			</div>
+
+			<!-- Photos Gallery  -->
+			<div class="gallery"></div>
+		</main>
+
+		<div class="nav-Btn">
+			<button class="morePhotos-Btn moreBtn popularMore">More</button>
+		</div>
+
+		<!-- JS script start  -->
+		<script src="../script/main.js"></script>
+		<!-- JS script end  -->
+	</body>
+
+	<footer>
+		<div class="copy-rights">
+			<h2>
+				&copy Developed by:
+				<a href="https://developersanto.netlify.app/" target="_blank"
+					>Developer<span>Santo.</span>
+				</a>
+			</h2>
+		</div>
+		<div class="links">
+			<a
+				class="github"
+				href="https://github.com/DeveloperSantoGithub"
+				target="_blank"
+				><i class="fas fa-brands fa-github"></i
+			></a>
+			<a
+				class="linkedin"
+				href="https://www.linkedin.com/in/saidul-islam-santo"
+				target="_blank"
+				><i class="fas fa-brands fa-linkedin-in"></i
+			></a>
+		</div>
+	</footer>
+</html>
