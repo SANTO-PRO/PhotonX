@@ -42,6 +42,7 @@ body header h2 #logo {
 }
 body header .search-form {
   display: flex;
+  margin: 2rem;
   background: #ffffff;
   border-radius: 15px;
   filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
