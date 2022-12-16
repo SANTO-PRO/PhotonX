@@ -32,11 +32,21 @@
 			</h2>
 
 			<form class="search-form">
+				<div id="select">
+					<p id="selectText">All</p>
+					<i class="fas fa-solid fa-angle-down"></i>
+					<ul id="list">
+						<li class="options">All</li>
+						<li class="options">Images</li>
+						<li class="options">Videos</li>
+					</ul>
+				</div>
+
 				<input
 					type="text"
 					name="search"
 					class="search-input"
-					placeholder="Find any photo you want.."
+					placeholder="Find free photos, videos..."
 				/>
 				<button class="search-Btn">Search</button>
 			</form>
@@ -76,7 +86,7 @@
 		</div>
 
 		<!-- JS script start  -->
-		<script type="module" src="./script/main.js"></script>
+		<script src="./script/main.js"></script>
 		<!-- JS script end  -->
 	</body>
 

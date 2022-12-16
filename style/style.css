@@ -42,25 +42,65 @@ body header h2 #logo {
 }
 body header .search-form {
   display: flex;
-  padding: 2rem;
+  background: #ffffff;
+  border-radius: 15px;
+  filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
+}
+body header .search-form #select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #003046;
+  width: 7rem;
+  border: none;
+  padding: 9.5px 15px;
+  cursor: pointer;
+  position: relative;
+}
+body header .search-form #select i {
+  width: 15px;
+  pointer-events: none;
+}
+body header .search-form #select ul {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  list-style: none;
+  width: 100%;
+  color: #555;
+  background-color: #fff;
+  border-radius: 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+body header .search-form #select ul li {
+  padding: 7px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+body header .search-form #select ul.open {
+  max-height: 300px;
 }
 body header .search-form input {
-  width: 30vw;
+  width: 25vw;
   height: 2.8rem;
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   background: #fff;
   border: none;
+  border-left: 2px solid #d1d1d1;
   outline: none;
   padding-left: 1rem;
   text-align: left;
-  border-radius: 15px 0 0 15px;
-  filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03)) drop-shadow(0 8px 5px rgba(0, 0, 0, 0.08));
 }
 @media screen and (max-width: 660px) {
   body header .search-form input {
-    width: 60vw;
+    width: 45vw;
   }
 }
 body header button {

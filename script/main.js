@@ -4,44 +4,25 @@ const auth_key = '563492ad6f917000010000013457deb42ca2403a9074ac93b29156e6';
 
 //==> Selectors:
 //=> Divs:
-const photosGallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 const searchInput = document.querySelector('.search-input');
 const form = document.querySelector('.search-form');
 
 //=> Buttons:
-const morePhotosBtn = document.querySelector('.morePhotos-Btn');
-const randomPhotosBtn = document.querySelector('.randomPhotos');
+const moreBtn = document.querySelector('.moreBtn');
+const randomGenerateBtn = document.querySelector('.random-generateBtn');
 
 //==> Variables:
 let searchValue;
 let currentSearch;
 let fetchPhotosUrl;
+let fetchVideosUrl;
 let fetchPopularPhotosUrl;
 let page = 1;
 
 //==> Listners:
 //=> Search Input:
 searchInput.addEventListener('input', updateInput);
-
-//=> Form:
-form.addEventListener('submit', (e) => {
-	e.preventDefault();
-
-	currentSearch = searchValue;
-	searchPhotos(searchValue);
-});
-
-//=> Load More Photos Btn:
-morePhotosBtn.addEventListener('click', () => {
-	if (morePhotosBtn.classList.contains('homeMore')) {
-		loadMorePhotos();
-	} else if (morePhotosBtn.classList.contains('popularMore')) {
-		loadMorePopularPhotos();
-	}
-});
-
-//=> Load Random photos Btn:
-randomPhotosBtn.addEventListener('click', randomPhotosGenerate);
 
 //==> Functions:
 //-->> Update Input:
@@ -51,7 +32,7 @@ function updateInput(e) {
 
 //-->> Clear:
 function clear() {
-	photosGallery.innerHTML = '';
+	gallery.innerHTML = '';
 	searchInput.value = '';
 }
 
@@ -85,10 +66,56 @@ function generatePhotos(data) {
 		</div>
 		<img src = ${photo.src.large}></img>
 		`;
-		photosGallery.appendChild(photoContainer);
+		gallery.appendChild(photoContainer);
 	});
 
 	imageLightbox();
+}
+
+//-->> Generate video Container:
+function generateVideos(data) {
+	data.videos.forEach((video) => {
+		video.video_files.forEach((video_file) => {
+			//=> Create Video Container:
+			const videoContainer = document.createElement('div');
+			videoContainer.classList.add('videoContainer');
+
+			//=> Conditions:
+			if (
+				video_file.quality === 'hd' &&
+				video_file.width === 1280 &&
+				video_file.height === 720
+			) {
+				videoContainer.innerHTML = `
+				<div class="gallery-info">
+				<p>${video_file.quality}</p>
+				<a  href = ${video_file.link} target = '_blank'> <i class="fas fa-download"></i> </a>
+				</div>
+				<video muted src = ${video_file.link}></video>
+				`;
+			} else if (
+				(video_file.quality === 'sd' || video_file.width === 1920, 960, 640)
+			) {
+				videoContainer.style.display = 'none';
+			}
+
+			//=> Append to Videos Gallery:
+			gallery.appendChild(videoContainer);
+		});
+	});
+
+	//==> Preview and Play Videos:
+	const videos = gallery.querySelectorAll('video');
+
+	videos.forEach((video) => {
+		video.addEventListener('mouseover', function () {
+			this.play();
+		});
+
+		video.addEventListener('mouseout', function () {
+			this.pause();
+		});
+	});
 }
 
 //-->> gallery Image Lightbox:
@@ -118,6 +145,25 @@ function imageLightbox() {
 	});
 }
 
+//-->> Search Dropdown Category:
+function searchCategory() {
+	let select = document.getElementById('select');
+	let list = document.getElementById('list');
+	let selectText = document.getElementById('selectText');
+	let options = document.getElementsByClassName('options');
+
+	select.addEventListener('click', () => {
+		list.classList.toggle('open');
+	});
+
+	for (option of options) {
+		option.addEventListener('click', function () {
+			selectText.innerText = this.innerText;
+			searchInput.placeholder = 'Search in ' + this.innerText;
+		});
+	}
+}
+
 //==> Get Curated photos:
 async function curatedPhotos() {
 	//=> curated url:
@@ -141,11 +187,25 @@ async function populerPhotos() {
 	generatePhotos(data);
 }
 
+//==> Get Popular Videos:
+async function popularVideos() {
+	//=> Popular Videos url:
+	fetchVideosUrl = `https://api.pexels.com/videos/popular?per_page=30&page=1`;
+
+	//=> Api fetch:
+	const data = await fetchApi(fetchVideosUrl);
+
+	//=> Generate Photos:
+	generateVideos(data);
+}
+
 //==> Search Photos:
 async function searchPhotos(query) {
 	//=> Clear Everythings:
 	clear();
+
 	//=> Search url:
+
 	fetchPhotosUrl = `https://api.pexels.com/v1/search?query=${query}+query&per_page=16&page=1`;
 
 	//=> Api fetch:
@@ -153,6 +213,21 @@ async function searchPhotos(query) {
 
 	//=> Generate Photos:
 	generatePhotos(data);
+}
+
+//==> Search Videos:
+async function searchVideos(query) {
+	//=> Clear Everythings:
+	clear();
+
+	//=> Search url:
+	fetchVideosUrl = `https://api.pexels.com/videos/search?query=${query}+query&per_page=25&page=1`;
+
+	//=> Api fetch:
+	const data = await fetchApi(fetchVideosUrl);
+
+	//=> Generate Videos:
+	generateVideos(data);
 }
 
 //==> LoadMore  Photos:
@@ -172,6 +247,25 @@ async function loadMorePhotos() {
 
 	//=> Generate Photos:
 	generatePhotos(data);
+}
+
+//==> LoadMore Videos:
+async function loadMoreVideos() {
+	//=> Page Increments:
+	page++;
+
+	//=> Conditions:
+	if (currentSearch) {
+		fetchVideosUrl = `https://api.pexels.com/videos/search?query=${currentSearch}+query&per_page=25&page=${page}`;
+	} else {
+		fetchVideosUrl = `https://api.pexels.com/videos/popular?per_page=30&page=${page}`;
+	}
+
+	//=> Api fetch:
+	const data = await fetchApi(fetchVideosUrl);
+
+	//=> Generate Videos:
+	generateVideos(data);
 }
 
 //==> LoadMore Popular Photos:
@@ -204,6 +298,12 @@ function randomPhotosGenerate() {
 	}
 }
 
+//==> Random Videos Generator:
+function randomVideosGenerate() {
+	clear();
+	loadMoreVideos();
+}
+
 //==> Add Active To Navbar Item:
 (function navbarActive() {
 	const currentLocation = location.href;
@@ -217,13 +317,63 @@ function randomPhotosGenerate() {
 	}
 })();
 
+//==> Buttons and Search Input Value Checker:
+function ButtonsChecker() {
+	if (
+		window.location.pathname === '/index.html' ||
+		window.location.pathname === '/page/popular.html'
+	) {
+		//==> Listners:
+		//=> Form:
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			currentSearch = searchValue;
+			searchPhotos(searchValue);
+		});
+
+		//=> Load More Photos Btn:
+		moreBtn.addEventListener('click', () => {
+			if (moreBtn.classList.contains('homeMore')) {
+				loadMorePhotos();
+			} else if (moreBtn.classList.contains('popularMore')) {
+				loadMorePopularPhotos();
+			}
+		});
+
+		//=> Load Random photos Btn:
+		randomGenerateBtn.addEventListener('click', randomPhotosGenerate);
+	} else if (window.location.pathname === '/page/videos.html') {
+		//==> Listners:
+
+		//=> Form:
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			currentSearch = searchValue;
+			searchVideos(searchValue);
+		});
+
+		//=> Load More Videos:
+		moreBtn.addEventListener('click', loadMoreVideos);
+
+		//=> Load Random Videos Btn:
+		randomGenerateBtn.addEventListener('click', randomVideosGenerate);
+	}
+}
+
 //==> page url Checker:
 function urlChecker() {
 	if (window.location.pathname === '/index.html') {
 		curatedPhotos();
-	} else {
+	} else if (window.location.pathname === '/page/popular.html') {
 		populerPhotos();
+	} else {
+		popularVideos();
 	}
 }
 
+//==> Global Function Execution:
 urlChecker();
+ButtonsChecker();
+searchCategory();
