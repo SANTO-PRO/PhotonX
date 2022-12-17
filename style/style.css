@@ -78,7 +78,7 @@ body header .search-form #select ul {
   overflow: hidden;
   transition: max-height 0.5s;
 }
-body header .search-form #select ul li {
+body header .search-form #select ul option {
   padding: 7px;
   margin-left: 0.5rem;
   cursor: pointer;
