@@ -135,42 +135,46 @@ body section .navbar {
   margin: 2.5rem 0 5rem 0rem;
 }
 body section .navbar .category {
-  background: #f7e2df;
-  width: 3rem;
-  height: 3rem;
-  padding: 25px;
   margin: 0 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.8rem;
+  border-radius: 1rem;
   transition: all 0.3s ease-out;
 }
 body section .navbar .category a {
+  text-decoration: none;
   color: #003046;
+  background: #f7e2df;
+  padding: 10px 15px;
+  border-radius: 1.5rem;
 }
-body section .navbar .category a i {
-  font-size: 1.4rem;
+body section .navbar .category a h2 {
+  font-size: 1rem;
+  font-weight: 500;
 }
 body section .navbar .category a.active {
   color: #eef6ff;
   background: #003046;
-  padding: 13px;
-  border-radius: 1rem;
+  padding: 10px 15px;
+  border-radius: 1.5rem;
 }
-body section .navbar .category a.active i {
+body section .navbar .category a.active h2 {
   color: #fbe0d3;
 }
 body section .navbar .category:hover {
-  background: #003046;
   transition: all 0.3s ease-in;
 }
 body section .navbar .category:hover a {
+  transition: all 0.3s ease-in;
+  background: #003046;
   color: #fbe0d3;
+  padding: 10px 15px;
+  border-radius: 1.5rem;
 }
 @media screen and (max-width: 660px) {
   body section .navbar .category {
-    margin: 0 3rem;
+    margin: 0 2rem;
   }
 }
 body main .title {

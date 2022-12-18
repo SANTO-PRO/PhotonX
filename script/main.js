@@ -7,6 +7,7 @@ const auth_key = '563492ad6f917000010000013457deb42ca2403a9074ac93b29156e6';
 const gallery = document.querySelector('.gallery');
 const searchInput = document.querySelector('.search-input');
 const form = document.querySelector('.search-form');
+const title = document.querySelector('.title h2');
 
 //=> Buttons:
 const moreBtn = document.querySelector('.moreBtn');
@@ -145,88 +146,84 @@ function imageLightbox() {
 	});
 }
 
-//-->> Search Dropdown Category:
-function searchCategory() {
-	let select = document.querySelector('#select');
-	let categoryList = document.querySelector('#categoryList');
-	let selectText = document.querySelector('#selectText');
-	let options = document.querySelectorAll('option');
-	let title = document.querySelector('.title h2');
+// categoryList.addEventListener('click', searchFilter);
 
-	select.addEventListener('click', () => {
-		categoryList.classList.toggle('open');
-	});
+// function searchFilter(e) {
+// 	e.stopPropagation();
 
-	options.forEach((option) => {
-		option.addEventListener('click', function () {
-			selectText.innerText = this.innerText;
-			searchInput.placeholder = 'Search in ' + this.innerText;
-			categoryList.classList.remove('open');
-		});
-	});
+// 	// switch (e.target.value) {
+// 	// 	case 'all':
+// 	// 		console.log('all selected');
 
-	categoryList.addEventListener('click', searchFilter);
+// 	// 		form.addEventListener('submit', (e) => {
+// 	// 			e.preventDefault();
+// 	// 			clear();
 
-	function searchFilter(e) {
-		e.stopPropagation();
+// 	// 			currentSearch = searchValue;
 
-		switch (e.target.value) {
-			case 'all':
-				console.log('all videos and images');
+// 	// 			searchVideos(searchValue);
+// 	// 			searchPhotos(searchValue);
 
-				if (
-					window.location.href === '/index.html' ||
-					window.location.href === '/page/popular.html' ||
-					window.location.href === '/page/videos.html'
-				) {
-					form.addEventListener('submit', (e) => {
-						e.preventDefault();
-						clear();
-						currentSearch = searchValue;
-						searchVideos(searchValue);
-						searchPhotos(searchValue);
+// 	// 			title.innerText = 'Search Results';
+// 	// 		});
 
-						title.innerText = 'Search Results';
-					});
-				}
-				break;
-			case 'photos':
-				if (
-					window.location.href === '/index.html' ||
-					window.location.href === '/page/popular.html' ||
-					window.location.href === '/page/videos.html'
-				) {
-					console.log('all images');
-					form.addEventListener('submit', (e) => {
-						e.preventDefault();
-						clear();
-						currentSearch = searchValue;
-						searchPhotos(searchValue);
+// 	// 		break;
+// 	// 	case 'photos':
+// 	// 		console.log('photos selected');
+// 	// 		form.addEventListener('submit', (e) => {
+// 	// 			e.preventDefault();
+// 	// 			clear();
 
-						title.innerText = 'Search Results';
-					});
-				}
-				break;
-			case 'videos':
-				if (
-					window.location.href === '/index.html' ||
-					window.location.href === '/page/popular.html' ||
-					window.location.href === '/page/videos.html'
-				) {
-					console.log('all videos ');
-					form.addEventListener('submit', (e) => {
-						e.preventDefault();
-						clear();
-						currentSearch = searchValue;
-						searchVideos(searchValue);
+// 	// 			currentSearch = searchValue;
+// 	// 			searchPhotos(searchValue);
 
-						title.innerText = 'Search Results';
-					});
-				}
-				break;
-		}
-	}
-}
+// 	// 			title.innerText = 'Search Results';
+// 	// 		});
+
+// 	// 		break;
+// 	// 	case 'videos':
+// 	// 		console.log('videos selected');
+// 	// 		form.addEventListener('submit', (e) => {
+// 	// 			e.preventDefault();
+// 	// 			clear();
+
+// 	// 			currentSearch = searchValue;
+// 	// 			searchVideos(searchValue);
+// 	// 		});
+// 	// }
+
+// 	if (e.target.value === 'all') {
+// 		form.addEventListener('submit', (e) => {
+// 			e.preventDefault();
+// 			clear();
+// 			currentSearch = searchValue;
+// 			searchVideos(searchValue);
+// 			searchPhotos(searchValue);
+
+// 			title.innerText = 'Search Results';
+// 		});
+// 	} else if (e.target.value === 'photos') {
+// 		form.addEventListener('submit', (e) => {
+// 			clear();
+// 			e.preventDefault();
+
+// 			currentSearch = searchValue;
+// 			searchPhotos(searchValue);
+
+// 			title.innerText = 'Search Results';
+// 		});
+// 	} else if (e.target.value === 'videos') {
+// 		form.addEventListener('submit', (e) => {
+// 			clear();
+// 			e.preventDefault();
+
+// 			currentSearch = searchValue;
+// 			searchVideos(searchValue);
+
+// 			title.innerText = 'Search Results';
+// 		});
+// 	}
+// }
 
 //==> Get Curated photos:
 async function curatedPhotos() {
@@ -389,18 +386,19 @@ function ButtonsChecker() {
 	) {
 		//==> Listners:
 		//=> Form:
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+		// form.addEventListener('submit', (e) => {
+		// 	e.preventDefault();
+		// 	clear();
 
-			currentSearch = searchValue;
+		// 	currentSearch = searchValue;
 
-			if (moreBtn.classList.contains('homeMore')) {
-				searchPhotos(searchValue);
-				searchVideos(searchValue);
-			} else if (moreBtn.classList.contains('popularMore')) {
-				searchPhotos(searchValue);
-			}
-		});
+		// 	if (moreBtn.classList.contains('homeMore')) {
+		// 		searchPhotos(searchValue);
+		// 		searchVideos(searchValue);
+		// 	} else if (moreBtn.classList.contains('popularMore')) {
+		// 		searchPhotos(searchValue);
+		// 	}
+		// });
 
 		//=> Load More Photos Btn:
 		moreBtn.addEventListener('click', () => {
@@ -417,12 +415,13 @@ function ButtonsChecker() {
 		//==> Listners:
 
 		//=> Form:
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+		// form.addEventListener('submit', (e) => {
+		// 	e.preventDefault();
+		// 	clear();
 
-			currentSearch = searchValue;
-			searchVideos(searchValue);
-		});
+		// 	currentSearch = searchValue;
+		// 	searchVideos(searchValue);
+		// });
 
 		//=> Load More Videos:
 		moreBtn.addEventListener('click', loadMoreVideos);
@@ -435,8 +434,8 @@ function ButtonsChecker() {
 //==> page url Checker:
 function urlChecker() {
 	if (window.location.pathname === '/index.html') {
-		curatedPhotos();
 		popularVideos();
+		curatedPhotos();
 	} else if (window.location.pathname === '/page/popular.html') {
 		populerPhotos();
 	} else {
@@ -445,6 +444,91 @@ function urlChecker() {
 }
 
 //==> Global Function Execution:
-urlChecker();
-ButtonsChecker();
+
 searchCategory();
+ButtonsChecker();
+urlChecker();
+
+//-->> Search Dropdown Category:
+function searchCategory() {
+	const select = document.querySelector('#select');
+	const categoryList = document.querySelector('#categoryList');
+	const selectText = document.querySelector('#selectText');
+	const options = document.querySelectorAll('option');
+
+	select.addEventListener('click', (e) => {
+		e.stopPropagation();
+		categoryList.classList.toggle('open');
+	});
+
+	options.forEach((option) => {
+		option.addEventListener('click', function (e) {
+			e.stopPropagation();
+			selectText.innerText = this.innerText;
+			searchInput.placeholder = 'Search in ' + this.innerText;
+			categoryList.classList.remove('open');
+
+			for (var i = 0; i < categoryList.length; i++) {
+				if (categoryList.options[i].value == 'all') {
+					categoryList.remove(i);
+				}
+			}
+
+			switch (e.target.value) {
+				case 'all':
+					console.clear();
+
+					(function allSearch() {
+						form.addEventListener('submit', (e) => {
+							e.preventDefault();
+							clear();
+
+							currentSearch = searchValue;
+							searchVideos(searchValue);
+							searchPhotos(searchValue);
+
+							title.innerText = 'Searched Photos and Videos Results';
+						});
+					})();
+
+					console.log('All the category');
+					break;
+
+				case 'photos':
+					console.clear();
+
+					(function photosSearch() {
+						form.addEventListener('submit', (e) => {
+							e.preventDefault();
+							clear();
+
+							currentSearch = searchValue;
+							searchPhotos(searchValue);
+
+							title.innerText = 'Search Photos Results';
+						});
+					})();
+					console.log('Photos Category');
+					break;
+
+				case 'videos':
+					console.clear();
+
+					(function videosSearch() {
+						form.addEventListener('submit', (e) => {
+							e.preventDefault();
+							clear();
+
+							currentSearch = searchValue;
+							// searchVideos(searchValue);
+
+							title.innerText = 'Searched Videos Results';
+						});
+					})();
+
+					console.log('Videos Category');
+					break;
+			}
+		});
+	});
+}
