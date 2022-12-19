@@ -395,7 +395,7 @@ function searchCategory() {
 		category.addEventListener('click', function searchFilter(e) {
 			e.stopPropagation();
 
-			if (e.target.value === 'all') {
+			if (e.target.value == 'all') {
 				console.log('all Category');
 
 				form.addEventListener('submit', (e) => {
@@ -407,27 +407,29 @@ function searchCategory() {
 
 					title.innerText = 'Searched Photos and Videos Results';
 				});
-			} else if (e.target.value === 'photos') {
+			} else if (e.target.value == 'photos') {
 				console.log('Photos Category');
 
 				form.addEventListener('submit', (e) => {
 					clear();
 					e.preventDefault();
 
+					currentSearch = searchValue;
 					searchPhotos(searchValue);
 
 					title.innerText = 'Search Photos Results';
 				});
-			} else {
+			} else if (e.target.value == 'videos') {
 				console.log('Videos Category');
 
 				form.addEventListener('submit', (e) => {
 					clear();
 					e.preventDefault();
 
+					currentSearch = searchValue;
 					searchVideos(searchValue);
 
-					title.innerText = 'Search Photos Results';
+					title.innerText = 'Search Videos Results';
 				});
 			}
 		});
@@ -437,6 +439,7 @@ function searchCategory() {
 }
 
 //==> Global Function Execution:
-searchCategory();
+
 ButtonsChecker();
+searchCategory();
 urlChecker();
