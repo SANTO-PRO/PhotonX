@@ -51,55 +51,23 @@ body header .search-form #select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   color: #003046;
-  width: 6rem;
+  width: 2rem;
   border: none;
-  padding: 9.5px 8px;
   cursor: pointer;
   position: relative;
 }
-body header .search-form #select #selectText {
-  margin-left: 0.3rem;
-}
 body header .search-form #select i {
   width: 15px;
+  margin-left: 1rem;
   pointer-events: none;
-}
-body header .search-form #select ul {
-  position: absolute;
-  top: 120%;
-  left: 0;
-  list-style: none;
-  width: 100%;
-  color: #555;
-  background-color: #fff;
-  border-radius: 5px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s;
-}
-body header .search-form #select ul option {
-  padding: 7px;
-  margin-left: 0.5rem;
-  cursor: pointer;
-}
-body header .search-form #select ul.open {
-  max-height: 300px;
 }
 @media screen and (max-width: 660px) {
   body header .search-form #select {
-    width: 5rem;
-    font-size: 0.9rem;
-    padding: 9.5px 6px;
-  }
-  body header .search-form #select #selectText {
-    margin-left: 0.4rem;
-  }
-  body header .search-form #select i {
-    margin-left: 0.25rem;
+    width: 2rem;
   }
 }
 body header .search-form input {
@@ -110,15 +78,14 @@ body header .search-form input {
   font-weight: 500;
   background: #fff;
   border: none;
-  border-left: 2px solid #d1d1d1;
   outline: none;
   padding-left: 1rem;
   text-align: left;
 }
 @media screen and (max-width: 660px) {
   body header .search-form input {
-    width: 55vw;
-    padding-left: 0.5rem;
+    width: 65vw;
+    padding-left: 1rem;
   }
 }
 body header button {

@@ -66,69 +66,59 @@ body {
 				justify-content: space-between;
 				align-items: center;
 
-				font-size: 1rem;
+				font-size: 1.2rem;
 				font-family: 'Poppins', sans-serif;
 				font-weight: 500;
 
 				color: #003046;
-				width: 6rem;
+				width: 2rem;
 				border: none;
 
-				padding: 9.5px 8px;
+				// padding: 9.5px 8px;
 
 				cursor: pointer;
 				position: relative;
 
-				#selectText {
-					margin-left: 0.3rem;
-				}
+				// #selectText {
+				// 	margin-left: 0.3rem;
+				// }
 
 				i {
 					width: 15px;
+					margin-left: 1rem;
 					pointer-events: none;
 				}
 
-				ul {
-					position: absolute;
-					top: 120%;
-					left: 0;
+				// ul {
+				// 	position: absolute;
+				// 	top: 120%;
+				// 	left: 0;
 
-					list-style: none;
+				// 	list-style: none;
 
-					width: 100%;
+				// 	width: 100%;
 
-					color: #555;
-					background-color: #fff;
-					border-radius: 5px;
+				// 	color: #555;
+				// 	background-color: #fff;
+				// 	border-radius: 5px;
 
-					max-height: 0;
-					overflow: hidden;
-					transition: max-height 0.5s;
+				// 	max-height: 0;
+				// 	overflow: hidden;
+				// 	transition: max-height 0.5s;
 
-					option {
-						padding: 7px;
-						margin-left: 0.5rem;
-						cursor: pointer;
-					}
-				}
+				// 	option {
+				// 		padding: 7px;
+				// 		margin-left: 0.5rem;
+				// 		cursor: pointer;
+				// 	}
+				// }
 
-				ul.open {
-					max-height: 300px;
-				}
+				// ul.open {
+				// 	max-height: 300px;
+				// }
 
 				@media screen and (max-width: 660px) {
-					width: 5rem;
-					font-size: 0.9rem;
-
-					padding: 9.5px 6px;
-
-					#selectText {
-						margin-left: 0.4rem;
-					}
-
-					i {
-						margin-left: 0.25rem;
-					}
+					width: 2rem;
 				}
 			}
 
@@ -144,14 +134,14 @@ body {
 				background: #fff;
 
 				border: none;
-				border-left: 2px solid #d1d1d1;
+				// border-left: 2px solid #d1d1d1;
 				outline: none;
 				padding-left: 1rem;
 				text-align: left;
 
 				@media screen and (max-width: 660px) {
-					width: 55vw;
-					padding-left: 0.5rem;
+					width: 65vw;
+					padding-left: 1rem;
 				}
 			}
 		}

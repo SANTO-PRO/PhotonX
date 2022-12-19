@@ -367,79 +367,79 @@ function urlChecker() {
 }
 
 //-->> Search Dropdown Category:
-function searchCategory() {
-	const select = document.querySelector('#select');
-	const categoryList = document.querySelector('#categoryList');
-	const selectText = document.querySelector('#selectText');
-	const options = document.querySelectorAll('option');
+// function searchCategory() {
+// 	const select = document.querySelector('#select');
+// 	const categoryList = document.querySelector('#categoryList');
+// 	const selectText = document.querySelector('#selectText');
+// 	const options = document.querySelectorAll('option');
 
-	//==> Category Menu open Close:
-	select.addEventListener('click', (e) => {
-		e.stopPropagation();
-		categoryList.classList.toggle('open');
-	});
+// 	//==> Category Menu open Close:
+// 	select.addEventListener('click', (e) => {
+// 		e.stopPropagation();
+// 		categoryList.classList.toggle('open');
+// 	});
 
-	options.forEach((option) => {
-		option.addEventListener('click', function (e) {
-			e.stopPropagation();
-			selectText.innerText = this.innerText;
-			searchInput.placeholder = 'Search in ' + this.innerText;
-			categoryList.classList.remove('open');
-		});
-	});
+// 	options.forEach((option) => {
+// 		option.addEventListener('click', function (e) {
+// 			e.stopPropagation();
+// 			selectText.innerText = this.innerText;
+// 			searchInput.placeholder = 'Search in ' + this.innerText;
+// 			categoryList.classList.remove('open');
+// 		});
+// 	});
 
-	//==> Category wise search:
-	const categorys = categoryList.childNodes;
+// 	//==> Category wise search:
+// 	const categorys = categoryList.childNodes;
 
-	categorys.forEach((category) => {
-		category.addEventListener('click', function searchFilter(e) {
-			e.stopPropagation();
+// 	categorys.forEach((category) => {
+// 		category.addEventListener('click', function searchFilter(e) {
+// 			e.stopPropagation();
 
-			if (e.target.value == 'all') {
-				console.log('all Category');
+// 			if (e.target.value == 'all') {
+// 				console.log('all Category');
 
-				form.addEventListener('submit', (e) => {
-					clear();
-					e.preventDefault();
+// 				form.addEventListener('submit', (e) => {
+// 					clear();
+// 					e.preventDefault();
 
-					searchVideos(searchValue);
-					searchPhotos(searchValue);
+// 					searchVideos(searchValue);
+// 					searchPhotos(searchValue);
 
-					title.innerText = 'Searched Photos and Videos Results';
-				});
-			} else if (e.target.value == 'photos') {
-				console.log('Photos Category');
+// 					title.innerText = 'Searched Photos and Videos Results';
+// 				});
+// 			} else if (e.target.value == 'photos') {
+// 				console.log('Photos Category');
 
-				form.addEventListener('submit', (e) => {
-					clear();
-					e.preventDefault();
+// 				form.addEventListener('submit', (e) => {
+// 					clear();
+// 					e.preventDefault();
 
-					currentSearch = searchValue;
-					searchPhotos(searchValue);
+// 					currentSearch = searchValue;
+// 					searchPhotos(searchValue);
 
-					title.innerText = 'Search Photos Results';
-				});
-			} else if (e.target.value == 'videos') {
-				console.log('Videos Category');
+// 					title.innerText = 'Search Photos Results';
+// 				});
+// 			} else if (e.target.value == 'videos') {
+// 				console.log('Videos Category');
 
-				form.addEventListener('submit', (e) => {
-					clear();
-					e.preventDefault();
+// 				form.addEventListener('submit', (e) => {
+// 					clear();
+// 					e.preventDefault();
 
-					currentSearch = searchValue;
-					searchVideos(searchValue);
+// 					currentSearch = searchValue;
+// 					searchVideos(searchValue);
 
-					title.innerText = 'Search Videos Results';
-				});
-			}
-		});
-	});
+// 					title.innerText = 'Search Videos Results';
+// 				});
+// 			}
+// 		});
+// 	});
 
-	//Note! : Need to solve category wise search relooping(function run multiple times is we do not reload the page again) problem.
-}
+// 	//Note! : Need to solve category wise search relooping(function run multiple times is we do not reload the page again) problem.
+// }
 
 //==> Global Function Execution:
 
 ButtonsChecker();
-searchCategory();
+// searchCategory();
 urlChecker();
