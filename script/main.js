@@ -35,6 +35,8 @@ function updateInput(e) {
 function clear() {
 	gallery.innerHTML = '';
 	searchInput.value = '';
+
+	console.log('Gallery Data Clear');
 }
 
 //-->> API fetch:
@@ -145,85 +147,6 @@ function imageLightbox() {
 		}
 	});
 }
-
-// categoryList.addEventListener('click', searchFilter);
-
-// function searchFilter(e) {
-// 	e.stopPropagation();
-
-// 	// switch (e.target.value) {
-// 	// 	case 'all':
-// 	// 		console.log('all selected');
-
-// 	// 		form.addEventListener('submit', (e) => {
-// 	// 			e.preventDefault();
-// 	// 			clear();
-
-// 	// 			currentSearch = searchValue;
-
-// 	// 			searchVideos(searchValue);
-// 	// 			searchPhotos(searchValue);
-
-// 	// 			title.innerText = 'Search Results';
-// 	// 		});
-
-// 	// 		break;
-// 	// 	case 'photos':
-// 	// 		console.log('photos selected');
-// 	// 		form.addEventListener('submit', (e) => {
-// 	// 			e.preventDefault();
-// 	// 			clear();
-
-// 	// 			currentSearch = searchValue;
-// 	// 			searchPhotos(searchValue);
-
-// 	// 			title.innerText = 'Search Results';
-// 	// 		});
-
-// 	// 		break;
-// 	// 	case 'videos':
-// 	// 		console.log('videos selected');
-// 	// 		form.addEventListener('submit', (e) => {
-// 	// 			e.preventDefault();
-// 	// 			clear();
-
-// 	// 			currentSearch = searchValue;
-// 	// 			searchVideos(searchValue);
-// 	// 		});
-// 	// }
-
-// 	if (e.target.value === 'all') {
-// 		form.addEventListener('submit', (e) => {
-// 			e.preventDefault();
-// 			clear();
-// 			currentSearch = searchValue;
-// 			searchVideos(searchValue);
-// 			searchPhotos(searchValue);
-
-// 			title.innerText = 'Search Results';
-// 		});
-// 	} else if (e.target.value === 'photos') {
-// 		form.addEventListener('submit', (e) => {
-// 			clear();
-// 			e.preventDefault();
-
-// 			currentSearch = searchValue;
-// 			searchPhotos(searchValue);
-
-// 			title.innerText = 'Search Results';
-// 		});
-// 	} else if (e.target.value === 'videos') {
-// 		form.addEventListener('submit', (e) => {
-// 			clear();
-// 			e.preventDefault();
-
-// 			currentSearch = searchValue;
-// 			searchVideos(searchValue);
-
-// 			title.innerText = 'Search Results';
-// 		});
-// 	}
-// }
 
 //==> Get Curated photos:
 async function curatedPhotos() {
@@ -386,19 +309,19 @@ function ButtonsChecker() {
 	) {
 		//==> Listners:
 		//=> Form:
-		// form.addEventListener('submit', (e) => {
-		// 	e.preventDefault();
-		// 	clear();
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			clear();
 
-		// 	currentSearch = searchValue;
+			currentSearch = searchValue;
 
-		// 	if (moreBtn.classList.contains('homeMore')) {
-		// 		searchPhotos(searchValue);
-		// 		searchVideos(searchValue);
-		// 	} else if (moreBtn.classList.contains('popularMore')) {
-		// 		searchPhotos(searchValue);
-		// 	}
-		// });
+			if (moreBtn.classList.contains('homeMore')) {
+				searchPhotos(searchValue);
+				searchVideos(searchValue);
+			} else if (moreBtn.classList.contains('popularMore')) {
+				searchPhotos(searchValue);
+			}
+		});
 
 		//=> Load More Photos Btn:
 		moreBtn.addEventListener('click', () => {
@@ -415,13 +338,13 @@ function ButtonsChecker() {
 		//==> Listners:
 
 		//=> Form:
-		// form.addEventListener('submit', (e) => {
-		// 	e.preventDefault();
-		// 	clear();
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			clear();
 
-		// 	currentSearch = searchValue;
-		// 	searchVideos(searchValue);
-		// });
+			currentSearch = searchValue;
+			searchVideos(searchValue);
+		});
 
 		//=> Load More Videos:
 		moreBtn.addEventListener('click', loadMoreVideos);
@@ -467,67 +390,49 @@ function searchCategory() {
 			selectText.innerText = this.innerText;
 			searchInput.placeholder = 'Search in ' + this.innerText;
 			categoryList.classList.remove('open');
+		});
+	});
 
-			for (var i = 0; i < categoryList.length; i++) {
-				if (categoryList.options[i].value == 'all') {
-					categoryList.remove(i);
-				}
-			}
+	const categorys = categoryList.childNodes;
 
-			switch (e.target.value) {
-				case 'all':
-					console.clear();
+	categorys.forEach((category) => {
+		category.addEventListener('click', function searchFilter(e) {
+			e.stopPropagation();
 
-					(function allSearch() {
-						form.addEventListener('submit', (e) => {
-							e.preventDefault();
-							clear();
+			if (e.target.value === 'all') {
+				console.log('all Category');
 
-							currentSearch = searchValue;
-							searchVideos(searchValue);
-							searchPhotos(searchValue);
+				form.addEventListener('submit', (e) => {
+					clear();
+					e.preventDefault();
 
-							title.innerText = 'Searched Photos and Videos Results';
-						});
-					})();
+					searchVideos(searchValue);
+					searchPhotos(searchValue);
 
-					console.log('All the category');
-					break;
+					title.innerText = 'Searched Photos and Videos Results';
+				});
+			} else if (e.target.value === 'photos') {
+				console.log('Photos Category');
 
-				case 'photos':
-					console.clear();
+				form.addEventListener('submit', (e) => {
+					clear();
+					e.preventDefault();
 
-					(function photosSearch() {
-						form.addEventListener('submit', (e) => {
-							e.preventDefault();
-							clear();
+					searchPhotos(searchValue);
 
-							currentSearch = searchValue;
-							searchPhotos(searchValue);
+					title.innerText = 'Search Photos Results';
+				});
+			} else {
+				console.log('Videos Category');
 
-							title.innerText = 'Search Photos Results';
-						});
-					})();
-					console.log('Photos Category');
-					break;
+				form.addEventListener('submit', (e) => {
+					clear();
+					e.preventDefault();
 
-				case 'videos':
-					console.clear();
+					searchVideos(searchValue);
 
-					(function videosSearch() {
-						form.addEventListener('submit', (e) => {
-							e.preventDefault();
-							clear();
-
-							currentSearch = searchValue;
-							// searchVideos(searchValue);
-
-							title.innerText = 'Searched Videos Results';
-						});
-					})();
-
-					console.log('Videos Category');
-					break;
+					title.innerText = 'Search Photos Results';
+				});
 			}
 		});
 	});
