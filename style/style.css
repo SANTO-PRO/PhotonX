@@ -57,9 +57,12 @@ body header .search-form #select {
   color: #003046;
   width: 6rem;
   border: none;
-  padding: 9.5px 11px;
+  padding: 9.5px 8px;
   cursor: pointer;
   position: relative;
+}
+body header .search-form #select #selectText {
+  margin-left: 0.3rem;
 }
 body header .search-form #select i {
   width: 15px;
@@ -86,6 +89,19 @@ body header .search-form #select ul option {
 body header .search-form #select ul.open {
   max-height: 300px;
 }
+@media screen and (max-width: 660px) {
+  body header .search-form #select {
+    width: 5rem;
+    font-size: 0.9rem;
+    padding: 9.5px 6px;
+  }
+  body header .search-form #select #selectText {
+    margin-left: 0.4rem;
+  }
+  body header .search-form #select i {
+    margin-left: 0.25rem;
+  }
+}
 body header .search-form input {
   width: 25vw;
   height: 2.8rem;
@@ -101,7 +117,8 @@ body header .search-form input {
 }
 @media screen and (max-width: 660px) {
   body header .search-form input {
-    width: 45vw;
+    width: 55vw;
+    padding-left: 0.5rem;
   }
 }
 body header button {
@@ -122,6 +139,11 @@ body header button:hover {
   background: #003046;
   color: #ebebeb;
   box-shadow: #0073a8 0 0 10px;
+}
+@media screen and (max-width: 660px) {
+  body header button {
+    width: 4.5rem;
+  }
 }
 body section {
   width: 100%;
