@@ -6,7 +6,7 @@
 
 ### *Features*:
 
-* Fetch Data from pexels API
+* Fetch Data from [pexels API](https://www.pexels.com/api/documentation/)
 * Powerful Search Bar
 * Home Page 
 * Stock Photos Page
@@ -29,16 +29,16 @@
 * Working With APIs
 
 
-## *WEBAPP DEMO*
+## *WEBSITE DEMO*
 
-# Home Page:
+## Home Page:
 ![photonX-Home](https://user-images.githubusercontent.com/72430572/208773015-526f3eb6-6fd9-4d1e-bc4f-6f94c6a2db8b.png)
-# Photos Page:
+## Photos Page:
 ![photonX-Photos](https://user-images.githubusercontent.com/72430572/208773023-cc93be2a-c426-4924-844e-e104322dc387.png)
-# Videos Page:
-[photonX-Videos](https://user-images.githubusercontent.com/72430572/208773031-c0d3a68c-03d8-4600-ad46-e383eac7f9c0.png)
+## Videos Page:
+![photonX-Videos](https://user-images.githubusercontent.com/72430572/208773031-c0d3a68c-03d8-4600-ad46-e383eac7f9c0.png)
 
-# *Author*!
+# *Author*
 
 * Saidul Islam Santo (DeveloperSantoGithub, sksanto.pro@gmail.com)
   - [LinkedIn](https://www.linkedin.com/in/saidul-islam-santo/)
